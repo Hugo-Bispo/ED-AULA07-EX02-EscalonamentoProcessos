@@ -6,18 +6,20 @@ public class EscalonadorController {
 
 	public void Escalonador(Fila fila) {
 		String name = "";
-		if(fila.size() == 0) {
-			System.out.println("Tamanho fila Invalida");
+		while (fila.size() != 0) {
+			try {
+				name = fila.remove();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			String num[] = name.split(";");
+			int valor_processo = Integer.parseInt(num[1]);
+			System.out.println("Processo " + num[0] + " Valor atual: " + num[1]);
+			valor_processo--;
+			if (valor_processo > 1) {
+				fila.insert(num[0]+";"+valor_processo);
+			}
 		}
-		try {
-			name = fila.remove();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String num [] = name.split(";");
-		int qtdvezes = Integer.parseInt(num[1]);
-		System.out.println(qtdvezes);
 	}
 
 }
